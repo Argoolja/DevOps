@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 #https://rapidapi.com/fyhao/api/currency-exchange
+#'x-rapidapi-key': "682677e02amsh4ba20d461819455p1690a8jsnd7c111104f2a",
+#'x-rapidapi-host': "currency-exchange.p.rapidapi.com"
 
 from tkinter import *
 from tkinter import ttk
