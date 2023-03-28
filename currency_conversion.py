@@ -108,6 +108,8 @@ def run(from_currency, to_currency):
             client, provider = calc_bests(all_currencies)
             draw(all_currencies)
             label(from_currency, to_currency, client, provider)
+        else:
+            out_put_field.delete('all')
     else:
         out_put_field.delete('all')
 
