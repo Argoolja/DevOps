@@ -15,6 +15,9 @@ def label(from_currency, to_currency, client, provider):
     
 def clean():
     out_put_field.delete('all')
+    out_put_field.create_text(200,100,text="Loading...")
+    win.update()
+    
 
 
 def draw(all_currencies):
@@ -34,7 +37,6 @@ def draw(all_currencies):
 
 
 def get_amount():
-        
         error = False
         try:
             float(amount_input.get())
@@ -104,25 +106,27 @@ def run(from_currency, to_currency):
             client, provider = calc_bests(all_currencies)
             draw(all_currencies)
             label(from_currency, to_currency, client, provider)
+    else:
+        out_put_field.delete('all')
 
 # GUI
-raam = Tk()
-raam.title("Currency exchange")
-raam.resizable(False, False)
-raam.geometry("400x450")
+win = Tk()
+win.title("Currency exchange")
+win.resizable(False, False)
+win.geometry("400x450")
 
-convert = ttk.Button(raam, text="convert", command = lambda : run(clicked_from.get(), clicked_to.get()))
+convert = ttk.Button(win, text="convert", command = lambda : run(clicked_from.get(), clicked_to.get()))
 convert.place(x=50, y=160,height=25, width=80)
 
-text_output = Text(raam, width=25, height=9)
+text_output = Text(win, width=25, height=9)
 text_output.place(x=450, y=30)
 
-out_put_field = Canvas(raam, width=400, height=250, background="white")
+out_put_field = Canvas(win, width=400, height=250, background="white")
 out_put_field.place(x=0, y=200)
 
 
-amount_input = ttk.Entry(raam)
-amount_label = ttk.Label(raam, text="Amount:")
+amount_input = ttk.Entry(win)
+amount_label = ttk.Label(win, text="Amount:")
 amount_label.place(x=50, y=0)
 amount_input.place(x=50, y=20, height=25, width=150)
 
@@ -130,15 +134,15 @@ options = [" ", "SGD","USD", "EUR", "AUD", "JPY", "CAD", "DKK", "THB", "VND", "G
   
 clicked_from = StringVar()
 clicked_from.set("USD")
-from_currency = ttk.OptionMenu( raam , clicked_from , *options )
-from_label = ttk.Label(raam, text="From currency:")
+from_currency = ttk.OptionMenu( win, clicked_from , *options )
+from_label = ttk.Label(win, text="From currency:")
 from_label.place(x=50, y=50)
 from_currency.place(x=50, y=70, height=25, width=100)
 
 clicked_to = StringVar()
-to_currency = ttk.OptionMenu( raam , clicked_to , *options )
-from_lable = ttk.Label(raam, text="To currency:")
+to_currency = ttk.OptionMenu( win , clicked_to , *options )
+from_lable = ttk.Label(win, text="To currency:")
 from_lable.place(x=50, y=100)
 to_currency.place(x=50, y=120, height=25, width=100)
 
-raam.mainloop()
+win.mainloop()
